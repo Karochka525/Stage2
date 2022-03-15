@@ -1,24 +1,34 @@
 package stage2.practice.one;
 
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class HanoiTower {
     static private final Stack<Integer> first=new Stack<>();
     static private final Stack<Integer> second =new Stack<>();
     static private final Stack<Integer> third=new Stack<>();
 
-    public static void exchange(int size){
-        for (int i = 0; i < size; i++) {
-            first.push(i+1);
-        }
-        System.out.println(first +"; "+ second +";"+ third );
-        popBrick(first, second);
-        popBrick(second, third);
+    public static void exchange(int size) {
+        IntStream.range(1, size+1).forEach(first::push);
+        System.out.println("START: "+first +"; "+ second +";"+ third +"\na");
+        moveBrick(size, first, third, second);
+        System.out.println("\nEND: "+first +"; "+ second +";"+ third );
+
     }
-    private static void popBrick(Stack<Integer> tower1, Stack<Integer> tower2) {
-        while (!tower1.isEmpty()) {
-            tower2.push(tower1.pop());
-            System.out.println(first +"; "+ second +";"+ third );
+
+    public static void moveBrick(
+            int num,
+            Stack<Integer> from,
+            Stack<Integer> to,
+            Stack<Integer> spare
+    ) {
+        if (num == 1) {
+            to.push(from.pop());
+            System.out.println("Move: " + first + "; " + second + ";" + third);
+            return;
         }
+        moveBrick(num - 1, from, spare, to);
+        moveBrick(1, from, to, spare);
+        moveBrick(num - 1, spare, to, from);
     }
 }

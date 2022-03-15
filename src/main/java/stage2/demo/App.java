@@ -1,6 +1,6 @@
 package stage2.demo;
 
-import stage2.practice.one.Archivator;
+import stage2.practice.one.HanoiTower;
 import stage2.practice.one.Parser;
 
 public class App {
@@ -12,8 +12,8 @@ public class App {
         System.out.println(Parser.validate("[760÷(746-x){AVB}"));
         System.out.println();
 
-//        HanoiTower.exchange(4);
+        HanoiTower.exchange(3);
         System.out.println();
-        System.out.println(Archivator.decompress(Archivator.compress("ABCD")));
+       // System.out.println(Archivator.decompress(Archivator.compress("ABCD")));
     }
 }
